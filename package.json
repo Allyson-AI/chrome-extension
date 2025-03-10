@@ -6,13 +6,13 @@
   "author": "Allyson",
   "scripts": {
     "dev": "plasmo dev",
-    "build": "plasmo build --env-file=.env.production --env-file=.env.chrome",
-    "build:firefox": "plasmo build --target=firefox-mv2 --env-file=.env.production --env-file=.env.chrome",
-    "build:brave": "plasmo build --target=brave-mv3 --env-file=.env.production --env-file=.env.chrome",
-    "build:edge": "plasmo build --target=edge-mv3 --env-file=.env.production --env-file=.env.chrome",
-    "build:opera": "plasmo build --target=opera-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" plasmo build --env-file=.env.production --env-file=.env.chrome",
+    "build:firefox": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" plasmo build --target=firefox-mv2 --env-file=.env.production --env-file=.env.chrome",
+    "build:brave": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" plasmo build --target=brave-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:edge": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" plasmo build --target=edge-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:opera": "cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" plasmo build --target=opera-mv3 --env-file=.env.production --env-file=.env.chrome",
     "package": "plasmo package",
-    "package:firefox": "plasmo package --target=firefox-mv2" 
+    "package:firefox": "plasmo package --target=firefox-mv2"
   },
   "dependencies": {
     "@clerk/chrome-extension": "^2.0.0",
@@ -30,6 +30,7 @@
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",
+    "cross-env": "^7.0.3",
     "postcss": "8.4.33",
     "prettier": "3.2.4",
     "typescript": "5.3.3"

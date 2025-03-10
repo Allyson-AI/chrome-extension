@@ -26,6 +26,7 @@ jobs:
         run: |
           npm install --no-optional
           npm uninstall sharp
+          npm install --save-dev cross-env
         
       - name: Create environment files
         run: |
@@ -39,7 +40,7 @@ jobs:
         
       - name: Build extension
         run: |
-          export NODE_OPTIONS="--max-old-space-size=32768"
+          export NODE_OPTIONS="--max-old-space-size=4096"
           npm run build
         
       - name: Package extension
