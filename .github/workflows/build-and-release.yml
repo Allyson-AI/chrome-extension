@@ -19,12 +19,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3.4.1
         with:
-          node-version: 20.x
+          node-version: 20.10.0
           cache: "npm"
+          
+      - name: Configure npm
+        run: |
+          npm config set legacy-peer-deps true
+          npm config set node-addon-api "6.1.0"
+          npm config set node-gyp-build "4.6.1"
+          npm config set sharp "0.32.6"
           
       - name: Install dependencies
         run: |
-          npm install --no-optional
+          npm ci --no-optional
           npm uninstall sharp
           npm install --save-dev cross-env
         
@@ -60,6 +67,9 @@ jobs:
         
       - name: Build extension
         run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          echo "NPM config: $(npm config list)"
           export NODE_OPTIONS="--max-old-space-size=4096"
           npm run build -- --verbose || {
             echo "Build failed. Checking for error logs..."
@@ -90,6 +100,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 20.10.0
+          cache: "npm"
+          
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
@@ -122,6 +138,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 20.10.0
+          cache: "npm"
+          
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
