@@ -25,15 +25,20 @@ jobs:
       - name: Configure npm
         run: |
           npm config set legacy-peer-deps true
-          npm config set node-addon-api "6.1.0"
-          npm config set node-gyp-build "4.6.1"
-          npm config set sharp "0.32.6"
+          cat > .npmrc << EOL
+          legacy-peer-deps=true
+          EOL
+          echo "Contents of .npmrc:"
+          cat .npmrc
           
       - name: Install dependencies
         run: |
           npm ci --no-optional
           npm uninstall sharp
           npm install --save-dev cross-env
+          npm install --save-dev node-addon-api@6.1.0 node-gyp-build@4.6.1
+          echo "Installed packages:"
+          npm list --depth=0
         
       - name: Create environment files
         env:
