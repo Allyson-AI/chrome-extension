@@ -8,7 +8,7 @@ import logo from "data-base64:~assets/allyson-a.svg";
 const createAccount = async (token: string) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/create`,
+      `${process.env.PLASMO_PUBLIC_API_URL}/user/create`,
       {
         method: "POST",
         headers: {
