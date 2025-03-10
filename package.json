@@ -47,30 +47,7 @@
       "<all_urls>"
     ]
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@clerk/shared",
-      "@swc/core",
-      "browser-tabs-lock",
-      "core-js",
-      "keccak",
-      "lmdb",
-      "msgpackr-extract",
-      "sharp"
-    ],
-    "overrides": {
-      "esbuild": "^0.20.0",
-      "nanoid": "^5.0.4",
-      "msgpackr": "^1.10.1",
-      "cross-spawn": "^7.0.3",
-      "rollup": "^4.9.6",
-      "micromatch": "^4.0.5",
-      "svelte": "^4.2.9",
-      "tsup": "^8.0.1",
-      "@coinbase/wallet-sdk": "^3.9.1"
-    }
-  },
-  "resolutions": {
+  "overrides": {
     "esbuild": "^0.20.0",
     "nanoid": "^5.0.4",
     "msgpackr": "^1.10.1",

@@ -16,7 +16,6 @@ Allyson is an AI web agent that handles online tasks for you. It can navigate we
 
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v16 or higher)
-- [pnpm](https://pnpm.io/) (recommended) or npm
 - A Clerk account for authentication
 
 ## 🔧 Installation
@@ -29,7 +28,7 @@ Before you begin, ensure you have the following installed:
 
 2. Install dependencies:
    ```bash
-   pnpm install
+   npm install
    ```
 
 3. Set up environment variables:
@@ -56,7 +55,7 @@ Before you begin, ensure you have the following installed:
 To start the development server:
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 This will start the Plasmo development server and load the extension in development mode.
@@ -66,23 +65,23 @@ This will start the Plasmo development server and load the extension in developm
 To build the extension for production:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 For specific browser targets:
 
 ```bash
 # Firefox
-pnpm build:firefox
+npm run build:firefox
 
 # Brave
-pnpm build:brave
+npm run build:brave
 
 # Edge
-pnpm build:edge
+npm run build:edge
 
 # Opera
-pnpm build:opera
+npm run build:opera
 ```
 
 ## 📦 Packaging
@@ -90,13 +89,13 @@ pnpm build:opera
 To package the extension for distribution:
 
 ```bash
-pnpm package
+npm run package
 ```
 
 For Firefox:
 
 ```bash
-pnpm package:firefox
+npm run package:firefox
 ```
 
 ## 🔑 Chrome Web Store Submission
