@@ -18,7 +18,7 @@
     "@clerk/chrome-extension": "^2.0.0",
     "@clerk/themes": "^2.2.12",
     "@tabler/icons-react": "^3.29.0",
-    "plasmo": "0.88.0",
+    "plasmo": "0.90.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sonner": "^1.7.2",
@@ -53,11 +53,32 @@
       "@swc/core",
       "browser-tabs-lock",
       "core-js",
-      "esbuild",
       "keccak",
       "lmdb",
       "msgpackr-extract",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "esbuild": "^0.20.0",
+      "nanoid": "^5.0.4",
+      "msgpackr": "^1.10.1",
+      "cross-spawn": "^7.0.3",
+      "rollup": "^4.9.6",
+      "micromatch": "^4.0.5",
+      "svelte": "^4.2.9",
+      "tsup": "^8.0.1",
+      "@coinbase/wallet-sdk": "^3.9.1"
+    }
+  },
+  "resolutions": {
+    "esbuild": "^0.20.0",
+    "nanoid": "^5.0.4",
+    "msgpackr": "^1.10.1",
+    "cross-spawn": "^7.0.3",
+    "rollup": "^4.9.6",
+    "micromatch": "^4.0.5",
+    "svelte": "^4.2.9",
+    "tsup": "^8.0.1",
+    "@coinbase/wallet-sdk": "^3.9.1"
   }
 }
