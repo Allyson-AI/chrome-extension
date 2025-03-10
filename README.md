@@ -4,6 +4,8 @@
 
 Allyson is an AI web agent that handles online tasks for you. It can navigate websites, fill forms, collect data, manage files, and perform various web-based operations with persistence through S3 storage.
 
+[Install from Chrome Web Store](https://chromewebstore.google.com/detail/allyson-ai-web-agent-pay/kcngcogbkiblljbjjfnojmgfppddockf)
+
 ## 🚀 Features
 
 - AI-powered web agent capabilities
