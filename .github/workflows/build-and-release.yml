@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-16-cores
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -84,10 +84,6 @@ jobs:
           prerelease: false
           files: |
             build/chrome-mv3-prod.zip
-            build/firefox-mv2-prod.zip
-            build/brave-mv3-prod.zip
-            build/edge-mv3-prod.zip
-            build/opera-mv3-prod.zip
           body: |
             See [CHANGELOG.md](https://github.com/Allyson-AI/chrome-extension/blob/main/CHANGELOG.md) for details.
         env:
