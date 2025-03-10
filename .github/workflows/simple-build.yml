@@ -1,8 +1,7 @@
-name: "Submit to Web Store"
+name: "Simple Build"
+
 on:
   workflow_dispatch:
-  release:
-    types: [published]
 
 jobs:
   build:
@@ -10,13 +9,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
       - name: Setup Node.js
         uses: actions/setup-node@v3.4.1
         with:
           node-version: 20.x
           cache: "npm"
+          
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install --no-optional
+          npm uninstall sharp
+          
       - name: Create environment files
         run: |
           echo "NODE_ENV=production" > .env.production
@@ -26,14 +30,18 @@ jobs:
           echo "PLASMO_PUBLIC_CLERK_SYNC_HOST=${{ secrets.CLERK_SYNC_HOST }}" >> .env.production
           echo "CRX_PUBLIC_KEY=${{ secrets.CRX_PUBLIC_KEY }}" > .env.chrome
           echo "CRX_ID=${{ secrets.CRX_ID }}" >> .env.chrome
-      - name: Build the extension
+        
+      - name: Build extension (Chrome only)
         run: |
           export NODE_OPTIONS=--max_old_space_size=8192
-          npm run build
-      - name: Package the extension into a zip artifact
-        run: npm run package
-      - name: Browser Platform Publish
-        uses: PlasmoHQ/bpp@v3
+          npx plasmo build --no-minify --env-file=.env.production --env-file=.env.chrome
+        
+      - name: Package extension
+        run: npx plasmo package
+        
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
         with:
-          keys: ${{ secrets.SUBMIT_KEYS }}
-          artifact: build/chrome-mv3-prod.zip
+          name: chrome-extension
+          path: build/chrome-mv3-prod.zip
+          if-no-files-found: warn 

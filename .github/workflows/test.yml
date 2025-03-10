@@ -36,5 +36,5 @@ jobs:
       # Uncomment when you add tests to your project
       # - name: Run tests
       #   run: |
-      #     export NODE_OPTIONS=--max_old_space_size=4096
+      #     export NODE_OPTIONS=--max_old_space_size=8192
       #     npm test 
