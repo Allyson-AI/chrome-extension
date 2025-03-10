@@ -135,6 +135,18 @@ For Chrome extension packaging, you'll need a private key file (`crx.pem`). If y
 
 If you're working with an existing extension, you'll need to obtain the original private key file.
 
+## 🤖 GitHub Actions
+
+This repository includes GitHub Actions workflows for building, testing, and releasing the extension. To use these workflows, you need to set up the following secrets in your GitHub repository:
+
+- `CLERK_PUBLISHABLE_KEY`: Your Clerk publishable key
+- `CLERK_FRONTEND_API`: Your Clerk frontend API endpoint
+- `API_URL`: Your API URL
+- `CLERK_SYNC_HOST`: Your Clerk sync host
+- `CRX_PUBLIC_KEY`: Your Chrome extension public key
+- `CRX_ID`: Your Chrome extension ID
+- `SUBMIT_KEYS`: Your keys.json file content for Chrome Web Store submission
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

@@ -6,13 +6,13 @@
   "author": "Allyson",
   "scripts": {
     "dev": "plasmo dev",
-    "build": "plasmo build",
-    "build:firefox": "plasmo build  --target=firefox-mv2",
-    "build:brave": "plasmo build  --target=brave-mv3",
-    "build:edge": "plasmo build --target=edge-mv3",
-    "build:opera": "plasmo build --target=opera-mv3",
+    "build": "plasmo build --env-file=.env.production --env-file=.env.chrome",
+    "build:firefox": "plasmo build --target=firefox-mv2 --env-file=.env.production --env-file=.env.chrome",
+    "build:brave": "plasmo build --target=brave-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:edge": "plasmo build --target=edge-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:opera": "plasmo build --target=opera-mv3 --env-file=.env.production --env-file=.env.chrome",
     "package": "plasmo package",
-    "package:firefox": "plasmo package  --target=firefox-mv2" 
+    "package:firefox": "plasmo package --target=firefox-mv2" 
   },
   "dependencies": {
     "@clerk/chrome-extension": "^2.0.0",
@@ -49,13 +49,15 @@
   },
   "overrides": {
     "esbuild": "^0.20.0",
-    "nanoid": "^5.0.4",
+    "nanoid": "^3.3.6",
     "msgpackr": "^1.10.1",
     "cross-spawn": "^7.0.3",
     "rollup": "^4.9.6",
     "micromatch": "^4.0.5",
     "svelte": "^4.2.9",
     "tsup": "^8.0.1",
-    "@coinbase/wallet-sdk": "^3.9.1"
+    "@coinbase/wallet-sdk": "^3.9.1",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1"
   }
 }

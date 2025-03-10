@@ -25,6 +25,16 @@ jobs:
       - name: Install dependencies
         run: npm install
         
+      - name: Create environment files
+        run: |
+          echo "NODE_ENV=production" > .env.production
+          echo "PLASMO_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.production
+          echo "CLERK_FRONTEND_API=${{ secrets.CLERK_FRONTEND_API }}" >> .env.production
+          echo "PLASMO_PUBLIC_API_URL=${{ secrets.API_URL }}" >> .env.production
+          echo "PLASMO_PUBLIC_CLERK_SYNC_HOST=${{ secrets.CLERK_SYNC_HOST }}" >> .env.production
+          echo "CRX_PUBLIC_KEY=${{ secrets.CRX_PUBLIC_KEY }}" > .env.chrome
+          echo "CRX_ID=${{ secrets.CRX_ID }}" >> .env.chrome
+        
       - name: Build extension
         run: npm run build
         

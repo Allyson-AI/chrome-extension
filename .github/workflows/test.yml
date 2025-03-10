@@ -23,6 +23,16 @@ jobs:
       - name: Install dependencies
         run: npm install
         
+      - name: Create environment files
+        run: |
+          echo "NODE_ENV=development" > .env.development
+          echo "PLASMO_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.development
+          echo "CLERK_FRONTEND_API=${{ secrets.CLERK_FRONTEND_API }}" >> .env.development
+          echo "PLASMO_PUBLIC_API_URL=${{ secrets.API_URL }}" >> .env.development
+          echo "PLASMO_PUBLIC_CLERK_SYNC_HOST=${{ secrets.CLERK_SYNC_HOST }}" >> .env.development
+          echo "CRX_PUBLIC_KEY=${{ secrets.CRX_PUBLIC_KEY }}" > .env.chrome
+          echo "CRX_ID=${{ secrets.CRX_ID }}" >> .env.chrome
+        
       # Uncomment when you add tests to your project
       # - name: Run tests
       #   run: npm test 
