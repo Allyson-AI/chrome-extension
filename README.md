@@ -17,7 +17,7 @@ Allyson is an AI web agent that handles online tasks for you. It can navigate we
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - A Clerk account for authentication
 
 ## 🔧 Installation
