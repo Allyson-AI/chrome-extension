@@ -19,18 +19,31 @@ jobs:
         run: |
           npm install --no-optional
           npm uninstall sharp
+          npm install --save-dev cross-env
       - name: Create environment files
+        env:
+          CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+          CLERK_FRONTEND_API: ${{ secrets.CLERK_FRONTEND_API }}
+          API_URL: ${{ secrets.API_URL }}
+          CLERK_SYNC_HOST: ${{ secrets.CLERK_SYNC_HOST }}
+          CRX_PUBLIC_KEY: ${{ secrets.CRX_PUBLIC_KEY }}
+          CRX_ID: ${{ secrets.CRX_ID }}
         run: |
-          echo "NODE_ENV=production" > .env.production
-          echo "PLASMO_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.CLERK_PUBLISHABLE_KEY }}" >> .env.production
-          echo "CLERK_FRONTEND_API=${{ secrets.CLERK_FRONTEND_API }}" >> .env.production
-          echo "PLASMO_PUBLIC_API_URL=${{ secrets.API_URL }}" >> .env.production
-          echo "PLASMO_PUBLIC_CLERK_SYNC_HOST=${{ secrets.CLERK_SYNC_HOST }}" >> .env.production
-          echo "CRX_PUBLIC_KEY=${{ secrets.CRX_PUBLIC_KEY }}" > .env.chrome
-          echo "CRX_ID=${{ secrets.CRX_ID }}" >> .env.chrome
+          cat > .env.production << EOL
+          NODE_ENV=production
+          PLASMO_PUBLIC_CLERK_PUBLISHABLE_KEY=${CLERK_PUBLISHABLE_KEY}
+          CLERK_FRONTEND_API=${CLERK_FRONTEND_API}
+          PLASMO_PUBLIC_API_URL=${API_URL}
+          PLASMO_PUBLIC_CLERK_SYNC_HOST=${CLERK_SYNC_HOST}
+          EOL
+          
+          cat > .env.chrome << EOL
+          CRX_PUBLIC_KEY=${CRX_PUBLIC_KEY}
+          CRX_ID=${CRX_ID}
+          EOL
       - name: Build the extension
         run: |
-          export NODE_OPTIONS="--max-old-space-size=32768"
+          export NODE_OPTIONS="--max-old-space-size=4096"
           npm run build
       - name: Package the extension into a zip artifact
         run: npm run package
