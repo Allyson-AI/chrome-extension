@@ -6,11 +6,11 @@
   "author": "Allyson",
   "scripts": {
     "dev": "plasmo dev",
-    "build": "plasmo build --env-file=.env.production --env-file=.env.chrome",
-    "build:firefox": "plasmo build --target=firefox-mv2 --env-file=.env.production --env-file=.env.chrome",
-    "build:brave": "plasmo build --target=brave-mv3 --env-file=.env.production --env-file=.env.chrome",
-    "build:edge": "plasmo build --target=edge-mv3 --env-file=.env.production --env-file=.env.chrome",
-    "build:opera": "plasmo build --target=opera-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 plasmo build --env-file=.env.production --env-file=.env.chrome",
+    "build:firefox": "NODE_OPTIONS=--max_old_space_size=4096 plasmo build --target=firefox-mv2 --env-file=.env.production --env-file=.env.chrome",
+    "build:brave": "NODE_OPTIONS=--max_old_space_size=4096 plasmo build --target=brave-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:edge": "NODE_OPTIONS=--max_old_space_size=4096 plasmo build --target=edge-mv3 --env-file=.env.production --env-file=.env.chrome",
+    "build:opera": "NODE_OPTIONS=--max_old_space_size=4096 plasmo build --target=opera-mv3 --env-file=.env.production --env-file=.env.chrome",
     "package": "plasmo package",
     "package:firefox": "plasmo package --target=firefox-mv2" 
   },
@@ -58,6 +58,7 @@
     "tsup": "^8.0.1",
     "@coinbase/wallet-sdk": "^3.9.1",
     "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.1"
+    "postcss-nested": "^6.0.1",
+    "sharp": "^0.32.6"
   }
 }

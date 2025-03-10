@@ -36,7 +36,9 @@ jobs:
           echo "CRX_ID=${{ secrets.CRX_ID }}" >> .env.chrome
         
       - name: Build extension
-        run: npm run build
+        run: |
+          export NODE_OPTIONS=--max_old_space_size=4096
+          npm run build
         
       - name: Package extension
         run: npm run package
