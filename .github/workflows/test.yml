@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16-cores
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,7 +21,9 @@ jobs:
           cache: "npm"
           
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install --no-optional
+          npm uninstall sharp
         
       - name: Create environment files
         run: |
@@ -36,5 +38,5 @@ jobs:
       # Uncomment when you add tests to your project
       # - name: Run tests
       #   run: |
-      #     export NODE_OPTIONS=--max_old_space_size=8192
+      #     export NODE_OPTIONS="--max-old-space-size=32768"
       #     npm test 
