@@ -49,11 +49,23 @@ jobs:
           CRX_PUBLIC_KEY=${CRX_PUBLIC_KEY}
           CRX_ID=${CRX_ID}
           EOL
+          
+          # Display environment files (without secrets)
+          echo "Environment files created:"
+          echo "Contents of .env.production (partial):"
+          grep -v "PUBLISHABLE_KEY\|API_URL\|FRONTEND_API\|SYNC_HOST" .env.production || true
+          echo "Contents of .env.chrome (masked):"
+          echo "CRX_PUBLIC_KEY=****"
+          echo "CRX_ID=****"
         
       - name: Build extension
         run: |
           export NODE_OPTIONS="--max-old-space-size=4096"
-          npm run build
+          npm run build -- --verbose || {
+            echo "Build failed. Checking for error logs..."
+            find . -name "*.log" -type f -exec cat {} \;
+            exit 1
+          }
         
       - name: Package extension
         run: npm run package
